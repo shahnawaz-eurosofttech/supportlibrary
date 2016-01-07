@@ -53,13 +53,15 @@ public class GeocoderHelperClass {
 							e.printStackTrace();
 						} finally {
 							final List<Address> result = list;
-							mHandler.post(new Runnable() {
-								@Override
-								public void run() {
-									if (mSetResultInterface != null)
-										mSetResultInterface.onGetResult(result);
-								}
-							});
+							if (result != null && result.size() > 0) {
+								mHandler.post(new Runnable() {
+									@Override
+									public void run() {
+										if (mSetResultInterface != null)
+											mSetResultInterface.onGetResult(result);
+									}
+								});
+							}
 
 						}
 					}
